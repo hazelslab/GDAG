@@ -1,0 +1,56 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/UI/PlayerController.uss?fileID=7433441132597879392&amp;guid=70af48ddb14fb9c45b7ff5b853f1c7e0&amp;type=3#PlayerController" />
+    <Style src="project://database/Assets/Scripts/Editor/UI/InspectorHeader.uss?fileID=7433441132597879392&amp;guid=5a85cd1b739397240a3b6610cfe2a9fb&amp;type=3#InspectorHeader" />
+    <ui:VisualElement name="root" style="flex-grow: 1; height: 674px;">
+        <ui:VisualElement name="header" class="insp-header">
+            <ui:Label text="PLAYER CONTROLLER" display-tooltip-when-elided="true" name="label-header" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content">
+            <ui:VisualElement name="content-toggles" style="align-items: center; margin-bottom: 10px;">
+                <ui:Toggle label="Can Move" name="toggle-move" />
+                <ui:Toggle label="Can Jump" name="toggle-jump" />
+            </ui:VisualElement>
+            <ui:VisualElement name="movement" class="insp-content-container" style="border-top-width: 1px;">
+                <ui:Label text="MOVEMENT" display-tooltip-when-elided="true" name="label-movement" class="insp-content-header" />
+                <ui:VisualElement name="content-movement">
+                    <ui:Slider picking-mode="Ignore" label="Move Speed" value="4.5" high-value="10" name="moveSpeed" inverted="false" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Acceleration" value="6" high-value="10" name="acceleration" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Deceleration" value="5" high-value="10" name="deceleration" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Air Acceleration" value="1" high-value="5" name="airAcceleration" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Air Deceleration" value="1" high-value="5" name="airDeceleration" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Velocity Power" value="1.2" high-value="5" name="velPower" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Friction" value="10" high-value="50" name="friction" show-input-field="true" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="jump" class="insp-content-container">
+                <ui:Label text="JUMP" display-tooltip-when-elided="true" name="label-jump" class="insp-content-header" />
+                <ui:VisualElement name="content-jump">
+                    <ui:Slider picking-mode="Ignore" label="Jump Force" value="10" high-value="50" name="jumpForce" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Jump Cut Multiplier" value="0.1" high-value="1" name="jumpCutMultiplier" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Fall Gravity Multiplier" value="1.25" high-value="5" name="fallGravityMultiplier" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Jump Coyote Time" value="0.15" high-value="2" name="jumpCoyoteTime" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Jump Buffer Time" value="0.1" high-value="1" name="jumpBufferTime" show-input-field="true" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="checks" class="insp-content-container">
+                <ui:Label text="CHECKS" display-tooltip-when-elided="true" name="label-checks" class="insp-content-header" />
+                <ui:VisualElement name="content-checks">
+                    <uie:ObjectField label="Object Field" name="groundCheckPoint" type="UnityEngine.Transform, UnityEngine.CoreModule" allow-scene-objects="true" />
+                    <uie:Vector2Field label="Ground Check Size" name="groundCheckSize" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="layerTags" class="insp-content-container">
+                <ui:Label text="LAYERS &amp; TAGS" display-tooltip-when-elided="true" name="label-layerTags" class="insp-content-header" />
+                <ui:VisualElement name="content-layerTags">
+                    <uie:LayerMaskField label="Ground Layer" name="groundLayer" value="0" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="debugging" class="insp-content-container">
+                <ui:Label text="DEBUGGING" display-tooltip-when-elided="true" name="label-debugging" class="insp-content-header" />
+                <ui:VisualElement name="content-debugging">
+                    <ui:Toggle label="Movement Trail" name="showMoveTrail" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
