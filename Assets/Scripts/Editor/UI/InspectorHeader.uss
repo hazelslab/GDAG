@@ -1,0 +1,40 @@
+.insp-header {
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    margin-bottom: 10px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-bottom-width: 1px;
+    font-size: 18px;
+    -unity-font-style: bold;
+    letter-spacing: 5px;
+}
+
+.insp-content-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left-color: rgba(255, 255, 255, 255);
+    border-right-color: rgba(255, 255, 255, 255);
+    border-top-color: rgba(255, 255, 255, 255);
+    border-bottom-color: rgba(255, 255, 255, 255);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    letter-spacing: 5px;
+}
+
+.insp-content-header {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    letter-spacing: 10px;
+}
