@@ -65,3 +65,7 @@ crashlytics-build.properties
 UserSettings/EditorUserSettings.asset
 
 UserSettings/Layouts/
+
+Assets/Sandbox/
+
+UserSettings/Search.settings
