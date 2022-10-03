@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+/// <summary>
+/// The PlayerMaster handles all Ccomponents needed for the player 
+/// like PlayerControlls, PlayerAnimations and more.
+/// </summary>
+public class PlayerMaster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static PlayerMaster Instance { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    public PlayerController REF_PlayerController;
+    
+    private void Awake()
     {
-        
+        // Player is not a singleton, because there is never more then one instantiation
+        Instance = this;
+
+        REF_PlayerController = GetComponent<PlayerController>();
     }
 }
