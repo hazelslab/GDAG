@@ -11,6 +11,7 @@ public class PlayerMaster : MonoBehaviour
     public static PlayerMaster Instance { get; private set; }
 
     public PlayerController REF_PlayerController;
+    public PlayerAnimations REF_PlayerAnimations;
     
     private void Awake()
     {
@@ -18,5 +19,6 @@ public class PlayerMaster : MonoBehaviour
         Instance = this;
 
         REF_PlayerController = GetComponent<PlayerController>();
+        REF_PlayerAnimations = GetComponent<PlayerAnimations>();
     }
 }

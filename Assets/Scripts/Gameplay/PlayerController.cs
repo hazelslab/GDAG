@@ -244,7 +244,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     #region Jump
     private void Jump(float jumpForce)
     {

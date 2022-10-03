@@ -29,10 +29,13 @@ public class PlayerMasterEditor : Editor
         visualTree.CloneTree(root);
 
         var ref_controller = root.Q<ObjectField>("of-controller");
+        var ref_animations = root.Q<ObjectField>("of-animations");
 
         ref_controller.objectType = typeof(PlayerController);
+        ref_animations.objectType = typeof(PlayerAnimations);
 
         ref_controller.BindProperty(serializedObject.FindProperty("REF_PlayerController"));
+        ref_animations.BindProperty(serializedObject.FindProperty("REF_PlayerAnimations"));
 
         return root;
     }
