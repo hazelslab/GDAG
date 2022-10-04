@@ -5,10 +5,9 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-//[CustomEditor(typeof(PlayerStats))]
+[CustomEditor(typeof(PlayerStats))]
 public class PlayerStatsEditor : Editor
 {
-
     private PlayerStats _stats;
 
     private VisualElement _rootElem;
@@ -30,26 +29,35 @@ public class PlayerStatsEditor : Editor
         _visualTree.CloneTree(root);
 
         //Components
-        var button_fillStamina = root.Q<Button>("button-fillStamina");
         var slider_currentStamina = root.Q<Slider>("slider-currentStamina");
         slider_currentStamina.SetEnabled(false);
         var slider_maxStamina = root.Q<Slider>("slider-maxStamina");
         var slider_drainMultiplier = root.Q<Slider>("slider-drainMultiplier");
+        var slider_walkRegenMultiplier = root.Q<Slider>("slider-walkRegenMultiplier");
+        var slider_idleRegenMultiplier = root.Q<Slider>("slider-idleRegenMultiplier");
+        var slider_timeUntilStaminaRegen = root.Q<Slider>("slider-timeUntilStaminaRegen");
+        var slider_currentTimeUntilStaminaRegen = root.Q<Slider>("slider-currentTimeUntilStaminaRegen");
+        slider_currentTimeUntilStaminaRegen.SetEnabled(false);
 
         //Bindings
         slider_currentStamina.BindProperty(serializedObject.FindProperty("_currentStamina"));
         slider_maxStamina.BindProperty(serializedObject.FindProperty("_maxStamina"));
         slider_drainMultiplier.BindProperty(serializedObject.FindProperty("_drainMultiplier"));
+        slider_walkRegenMultiplier.BindProperty(serializedObject.FindProperty("_walkRegenMultiplier"));
+        slider_idleRegenMultiplier.BindProperty(serializedObject.FindProperty("_idleRegenMultiplier"));
+        slider_timeUntilStaminaRegen.BindProperty(serializedObject.FindProperty("_timeUntilStaminaRegen"));
+        slider_currentTimeUntilStaminaRegen.BindProperty(serializedObject.FindProperty("_timeUntilStaminaRegen_timer"));
 
         //Events
         slider_maxStamina.RegisterValueChangedCallback(evt =>
         {
             slider_currentStamina.highValue = slider_maxStamina.value;
+            slider_currentStamina.value = slider_maxStamina.value;
         });
-        button_fillStamina.clicked += () =>
+        slider_timeUntilStaminaRegen.RegisterValueChangedCallback(evt =>
         {
-            slider_currentStamina.value = slider_currentStamina.highValue;
-        };
+            slider_currentTimeUntilStaminaRegen.highValue = slider_timeUntilStaminaRegen.value;
+        });
 
 
         return root;

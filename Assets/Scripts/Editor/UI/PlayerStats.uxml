@@ -8,10 +8,15 @@
             <ui:VisualElement name="staminaSettings" class="insp-content-container" style="border-top-width: 1px;">
                 <ui:Label text="STAMINA" display-tooltip-when-elided="true" name="label-staminaSettings" class="insp-content-header" />
                 <ui:VisualElement name="content-staminaSettings">
-                    <ui:Button text="Fill Stamina" display-tooltip-when-elided="true" name="button-fillStamina" focusable="false" style="height: 25px;" />
                     <ui:Slider picking-mode="Ignore" label="Current Stamina" value="100" high-value="500" name="slider-currentStamina" show-input-field="true" focusable="false" />
                     <ui:Slider picking-mode="Ignore" label="Max Stamina" value="100" high-value="500" name="slider-maxStamina" show-input-field="true" />
                     <ui:Slider picking-mode="Ignore" label="Drain Multiplier" value="5" high-value="20" name="slider-drainMultiplier" show-input-field="true" />
+                    <ui:VisualElement name="sliderHolder" style="margin-top: 2px; margin-bottom: 2px; border-left-color: rgba(255, 255, 255, 0.39); border-right-color: rgba(255, 255, 255, 0.39); border-top-color: rgba(255, 255, 255, 0.39); border-bottom-color: rgba(255, 255, 255, 0.39); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;">
+                        <ui:Slider picking-mode="Ignore" label="(Walk) Regeneration Multiplier" value="1.5" high-value="10" name="slider-walkRegenMultiplier" show-input-field="true" style="flex-direction: column;" />
+                        <ui:Slider picking-mode="Ignore" label="(Idle)   Regeneration Multiplier  " value="2.5" high-value="10" name="slider-idleRegenMultiplier" show-input-field="true" style="flex-direction: column;" />
+                    </ui:VisualElement>
+                    <ui:Slider picking-mode="Ignore" label="Time Until Regeneration" value="3" high-value="10" name="slider-timeUntilStaminaRegen" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Current Time Until Regeneration" value="3" high-value="10" name="slider-currentTimeUntilStaminaRegen" show-input-field="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

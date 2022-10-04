@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Animation States
+    public PlayerAnimState CurrentPlayerAnimState;
+
     const string PLAYER_IDLE = "Idle";
     const string PLAYER_WALK = "Walk";
     const string PLAYER_RUN = "Run";
@@ -120,8 +122,6 @@ public class PlayerController : MonoBehaviour
     const string PLAYER_JUMP_RISE = "JumpRise";
     const string PLAYER_JUMP_MID = "JumpMid";
     const string PLAYER_JUMP_FALL = "JumpFall";
-
-    private PlayerAnimState playerAnimState;
     #endregion
 
 
@@ -184,14 +184,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isGrounded && moveInput.x == 0 && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_IDLE); playerAnimState = PlayerAnimState.PLAYER_IDLE; }
-        else if (isGrounded && moveInput.x == 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CROUCH); playerAnimState = PlayerAnimState.PLAYER_CROUCH; }
-        else if (isGrounded && moveInput.x != 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CRAWL); playerAnimState = PlayerAnimState.PLAYER_CRAWL; }
-        else if (isGrounded && moveInput.x != 0 && !_isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_WALK); playerAnimState = PlayerAnimState.PLAYER_WALK; }
-        else if (isGrounded && moveInput.x != 0 && _isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_RUN); playerAnimState = PlayerAnimState.PLAYER_RUN; }
-        else if (!isGrounded && rbody.velocity.y > 2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_RISE); playerAnimState = PlayerAnimState.PLAYER_JUMP_RISE; }
-        else if (!isGrounded && rbody.velocity.y <= 2 && rbody.velocity.y >= -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_MID); playerAnimState = PlayerAnimState.PLAYER_JUMP_MID; }
-        else if (!isGrounded && rbody.velocity.y < -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_FALL); playerAnimState = PlayerAnimState.PLAYER_JUMP_FALL; }
+        if (_master.PlayerStats_REF.CurrentStamina <= 0) _isRunning = false;
+        if (isGrounded && moveInput.x == 0 && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_IDLE); CurrentPlayerAnimState = PlayerAnimState.PLAYER_IDLE; }
+        else if (isGrounded && moveInput.x == 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CROUCH); CurrentPlayerAnimState = PlayerAnimState.PLAYER_CROUCH; }
+        else if (isGrounded && moveInput.x != 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CRAWL); CurrentPlayerAnimState = PlayerAnimState.PLAYER_CRAWL; }
+        else if (isGrounded && moveInput.x != 0 && !_isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_WALK); CurrentPlayerAnimState = PlayerAnimState.PLAYER_WALK; }
+        else if (isGrounded && moveInput.x != 0 && _isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_RUN); CurrentPlayerAnimState = PlayerAnimState.PLAYER_RUN; }
+        else if (!isGrounded && rbody.velocity.y > 2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_RISE); CurrentPlayerAnimState = PlayerAnimState.PLAYER_JUMP_RISE; }
+        else if (!isGrounded && rbody.velocity.y <= 2 && rbody.velocity.y >= -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_MID); CurrentPlayerAnimState = PlayerAnimState.PLAYER_JUMP_MID; }
+        else if (!isGrounded && rbody.velocity.y < -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_FALL); CurrentPlayerAnimState = PlayerAnimState.PLAYER_JUMP_FALL; }
 
 
         #region Inputs
@@ -257,15 +258,15 @@ public class PlayerController : MonoBehaviour
         #region Run
         if (canMove)
         {
-            if (playerAnimState == PlayerAnimState.PLAYER_WALK)
+            if (CurrentPlayerAnimState == PlayerAnimState.PLAYER_WALK)
             {
                 moveSpeed = walkSpeed;
             }
-            else if (playerAnimState == PlayerAnimState.PLAYER_RUN)
+            else if (CurrentPlayerAnimState == PlayerAnimState.PLAYER_RUN)
             {
                 moveSpeed = runSpeed;
             }
-            else if (playerAnimState == PlayerAnimState.PLAYER_CRAWL)
+            else if (CurrentPlayerAnimState == PlayerAnimState.PLAYER_CRAWL)
             {
                 moveSpeed = crouchSpeed;
             }
