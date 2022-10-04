@@ -10,17 +10,17 @@ public class PlayerMaster : MonoBehaviour
 {
     public static PlayerMaster Instance { get; private set; }
 
-    public PlayerStats REF_PlayerStats;
-    public PlayerController REF_PlayerController;
-    public PlayerAnimations REF_PlayerAnimations;
+    public PlayerStats PlayerStats_REF;
+    public PlayerController PlayerController_REF;
+    public PlayerAnimations PlayerAnimations_REF;
     
     private void Awake()
     {
         // Player is not a singleton, because there is never more then one instantiation
         Instance = this;
 
-        REF_PlayerStats = GetComponent<PlayerStats>();
-        REF_PlayerController = GetComponent<PlayerController>();
-        REF_PlayerAnimations = GetComponent<PlayerAnimations>();
+        PlayerStats_REF = GetComponent<PlayerStats>();
+        PlayerController_REF = GetComponent<PlayerController>();
+        PlayerAnimations_REF = GetComponent<PlayerAnimations>();
     }
 }

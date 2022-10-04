@@ -36,9 +36,9 @@ public class PlayerMasterEditor : Editor
         ref_controller.objectType = typeof(PlayerController);
         ref_animations.objectType = typeof(PlayerAnimations);
 
-        ref_stats.BindProperty(serializedObject.FindProperty("REF_PlayerStats"));
-        ref_controller.BindProperty(serializedObject.FindProperty("REF_PlayerController"));
-        ref_animations.BindProperty(serializedObject.FindProperty("REF_PlayerAnimations"));
+        ref_stats.BindProperty(serializedObject.FindProperty("PlayerStats_REF"));
+        ref_controller.BindProperty(serializedObject.FindProperty("PlayerController_REF"));
+        ref_animations.BindProperty(serializedObject.FindProperty("PlayerAnimations_REF"));
 
         return root;
     }

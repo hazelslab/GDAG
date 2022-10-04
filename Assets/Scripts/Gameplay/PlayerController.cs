@@ -13,10 +13,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveInput { get { return moveInput; } private set { MoveInput = value; } }
     public float JumpVelocity { get { return rbody.velocity.y; } private set { JumpVelocity = value; } }
     public bool IsGrounded { get { return isGrounded; } private set { IsGrounded = value; } }
-    public bool IsWalking { get { return _isWalking; } private set { IsWalking = value; } }
+
     public bool IsRunning { get { return _isRunning; } private set { IsRunning = value; } }
     public bool IsCrouching { get { return _isCrouching; } private set { IsCrouching = value; } }
-    public bool IsCrawling { get { return _isCrawling; } private set { IsCrawling = value; } }
 
 
 
@@ -53,10 +52,9 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     private Vector2 moveInput;
     private Vector2 lastMoveInput;
-    private bool _isWalking;
+
     private bool _isRunning;
     private bool _isCrouching;
-    private bool _isCrawling;
     #endregion
 
 
@@ -113,6 +111,19 @@ public class PlayerController : MonoBehaviour
     private bool jumpPressedDown = false;
     #endregion
 
+    #region Animation States
+    const string PLAYER_IDLE = "Idle";
+    const string PLAYER_WALK = "Walk";
+    const string PLAYER_RUN = "Run";
+    const string PLAYER_CROUCH = "Crouch";
+    const string PLAYER_CRAWL = "Crawl";
+    const string PLAYER_JUMP_RISE = "JumpRise";
+    const string PLAYER_JUMP_MID = "JumpMid";
+    const string PLAYER_JUMP_FALL = "JumpFall";
+
+    private PlayerAnimState playerAnimState;
+    #endregion
+
 
     private Rigidbody2D rbody;
     private TrailRenderer trailRenderer;
@@ -130,14 +141,6 @@ public class PlayerController : MonoBehaviour
     public void IA_Move(InputAction.CallbackContext context)
     {
         moveInput = context.action.ReadValue<Vector2>();
-        if (context.started)
-        {
-            _isWalking = true;
-        }
-        if (context.canceled)
-        {
-            _isWalking = false;
-        }
     }
 
     public void IA_Jump(InputAction.CallbackContext context)
@@ -156,14 +159,8 @@ public class PlayerController : MonoBehaviour
 
     public void IA_Sprint(InputAction.CallbackContext context)
     {
-        if (!isGrounded && MoveInput.x == 0 && _master.REF_PlayerStats.CurrentStamina <= 0)
-        {
-            _isRunning = false;
-            return;
-        }
         if (context.started)
         {
-            _isCrouching = false;
             _isRunning = true;
         }
         if (context.canceled)
@@ -174,14 +171,8 @@ public class PlayerController : MonoBehaviour
 
     public void IA_Crouch(InputAction.CallbackContext context)
     {
-        if (!isGrounded)
-        {
-            _isCrouching = false;
-            return;
-        }
         if (context.started)
         {
-            _isRunning = false;
             _isCrouching = true;
         }
         if (context.canceled)
@@ -193,6 +184,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isGrounded && moveInput.x == 0 && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_IDLE); playerAnimState = PlayerAnimState.PLAYER_IDLE; }
+        else if (isGrounded && moveInput.x == 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CROUCH); playerAnimState = PlayerAnimState.PLAYER_CROUCH; }
+        else if (isGrounded && moveInput.x != 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CRAWL); playerAnimState = PlayerAnimState.PLAYER_CRAWL; }
+        else if (isGrounded && moveInput.x != 0 && !_isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_WALK); playerAnimState = PlayerAnimState.PLAYER_WALK; }
+        else if (isGrounded && moveInput.x != 0 && _isRunning && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_RUN); playerAnimState = PlayerAnimState.PLAYER_RUN; }
+        else if (!isGrounded && rbody.velocity.y > 2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_RISE); playerAnimState = PlayerAnimState.PLAYER_JUMP_RISE; }
+        else if (!isGrounded && rbody.velocity.y <= 2 && rbody.velocity.y >= -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_MID); playerAnimState = PlayerAnimState.PLAYER_JUMP_MID; }
+        else if (!isGrounded && rbody.velocity.y < -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_FALL); playerAnimState = PlayerAnimState.PLAYER_JUMP_FALL; }
+
+
         #region Inputs
         if (jumpPressedDown)
         {
@@ -256,17 +257,17 @@ public class PlayerController : MonoBehaviour
         #region Run
         if (canMove)
         {
-            if (_isRunning && _master.REF_PlayerStats.CurrentStamina > 0)
+            if (playerAnimState == PlayerAnimState.PLAYER_WALK)
+            {
+                moveSpeed = walkSpeed;
+            }
+            else if (playerAnimState == PlayerAnimState.PLAYER_RUN)
             {
                 moveSpeed = runSpeed;
             }
-            else if (_isCrouching)
+            else if (playerAnimState == PlayerAnimState.PLAYER_CRAWL)
             {
                 moveSpeed = crouchSpeed;
-            }
-            else
-            {
-                moveSpeed = walkSpeed;
             }
 
             //calculate the direction we want to move in and our desired velocity

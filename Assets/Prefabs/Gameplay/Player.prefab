@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e277cdd854d24904ab4f222ed19a9f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  REF_PlayerStats: {fileID: 3856505899254029975}
-  REF_PlayerController: {fileID: 3182422436589069214}
-  REF_PlayerAnimations: {fileID: 8335177077810294943}
+  PlayerStats_REF: {fileID: 0}
+  PlayerController_REF: {fileID: 0}
+  PlayerAnimations_REF: {fileID: 0}
 --- !u!114 &3856505899254029975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,9 +85,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   canJump: 1
-  crouchSpeed: 1.5
+  crouchSpeed: 1
   walkSpeed: 2.5
-  runSpeed: 6
+  runSpeed: 4.5
   acceleration: 6
   deceleration: 5
   airAccel: 1

@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-//[CustomEditor(typeof(PlayerController))]
+[CustomEditor(typeof(PlayerController))]
 public class PlayerControllerEditor : Editor
 {
     private PlayerController controller;
