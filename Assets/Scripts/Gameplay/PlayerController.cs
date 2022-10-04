@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rbody;
     private TrailRenderer trailRenderer;
+    private CapsuleCollider2D _capsCollider;
 
 
     private void Awake()
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
         _master = GetComponent<PlayerMaster>();
         rbody = GetComponent<Rigidbody2D>();
         trailRenderer = GetComponentInChildren<TrailRenderer>();
+        _capsCollider = GetComponent<CapsuleCollider2D>();
         gravityScale = rbody.gravityScale;
     }
 
@@ -200,6 +202,17 @@ public class PlayerController : MonoBehaviour
         else if (!isGrounded && rbody.velocity.y <= 2 && rbody.velocity.y >= -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_MID); CurrentPlayerAnimState = PlayerAnimState.PLAYER_JUMP_MID; }
         else if (!isGrounded && rbody.velocity.y < -2) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_JUMP_FALL); CurrentPlayerAnimState = PlayerAnimState.PLAYER_JUMP_FALL; }
 
+        //crouch collider adjustment
+        if(CurrentPlayerAnimState == PlayerAnimState.PLAYER_CROUCH || CurrentPlayerAnimState == PlayerAnimState.PLAYER_CRAWL)
+        {
+            _capsCollider.offset = new Vector2(_capsCollider.offset.x, 0.08f);
+            _capsCollider.size = new Vector2(_capsCollider.size.x, 0.825f);
+        }
+        else
+        {
+            _capsCollider.offset = new Vector2(_capsCollider.offset.x, 0.29f);
+            _capsCollider.size = new Vector2(_capsCollider.size.x, 1.25f);
+        }
 
         #region Inputs
         if (jumpPressedDown)
