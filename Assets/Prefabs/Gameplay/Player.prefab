@@ -71,9 +71,10 @@ MonoBehaviour:
   _currentStamina: 100
   _maxStamina: 100
   _drainMultiplier: 3
-  _walkRegenMultiplier: 2
+  _walkRegenMultiplier: 1
   _idleRegenMultiplier: 2.5
   _timeUntilStaminaRegen: 3
+  _timeUntilStaminaRegen_timer: 0
   _staminaSlider: {fileID: 0}
 --- !u!114 &3182422436589069214
 MonoBehaviour:
