@@ -92,6 +92,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     #endregion
 
+    #region Particles
+    [SerializeField]
+    private ParticleSystem _walkingDust;
+    #endregion
+
 
     #region Layers & Tags
     //serialized
@@ -141,6 +146,7 @@ public class PlayerController : MonoBehaviour
     public void IA_Move(InputAction.CallbackContext context)
     {
         moveInput = context.action.ReadValue<Vector2>();
+        //CreateWalkingDust();
     }
 
     public void IA_Jump(InputAction.CallbackContext context)
@@ -362,6 +368,11 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    private void CreateWalkingDust()
+    {
+        _walkingDust.Play();
     }
 
     private void OnDrawGizmosSelected()

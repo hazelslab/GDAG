@@ -76,6 +76,9 @@ public class PlayerControllerEditor : Editor
         var atr_groundCheckSize = root.Q<Vector2Field>("groundCheckSize");
         atr_groundCheckSize.BindProperty(serializedObject.FindProperty("groundCheckSize"));
 
+        var atr_walkingParticles = root.Q<ObjectField>("walkingParticles");
+        atr_walkingParticles.BindProperty(serializedObject.FindProperty("_walkingDust"));
+
         var atr_groundLayer = root.Q<LayerMaskField>("groundLayer");
         atr_groundLayer.BindProperty(serializedObject.FindProperty("groundLayer"));
 
