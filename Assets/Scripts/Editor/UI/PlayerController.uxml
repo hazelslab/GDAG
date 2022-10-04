@@ -1,7 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Assets/Scripts/Editor/UI/PlayerController.uss?fileID=7433441132597879392&amp;guid=70af48ddb14fb9c45b7ff5b853f1c7e0&amp;type=3#PlayerController" />
     <Style src="project://database/Assets/Scripts/Editor/UI/InspectorHeader.uss?fileID=7433441132597879392&amp;guid=5a85cd1b739397240a3b6610cfe2a9fb&amp;type=3#InspectorHeader" />
-    <ui:VisualElement name="root" style="flex-grow: 1; height: 674px;">
+    <ui:VisualElement name="root" style="flex-grow: 1; height: 751px;">
         <ui:VisualElement name="header" class="insp-header">
             <ui:Label text="PLAYER CONTROLLER" display-tooltip-when-elided="true" name="label-header" />
         </ui:VisualElement>
@@ -13,7 +12,9 @@
             <ui:VisualElement name="movement" class="insp-content-container" style="border-top-width: 1px;">
                 <ui:Label text="MOVEMENT" display-tooltip-when-elided="true" name="label-movement" class="insp-content-header" />
                 <ui:VisualElement name="content-movement">
-                    <ui:Slider picking-mode="Ignore" label="Move Speed" value="4.5" high-value="10" name="moveSpeed" inverted="false" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Crouch Speed" value="1.5" high-value="10" name="crouchSpeed" inverted="false" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Walk Speed" value="3" high-value="10" name="walkSpeed" inverted="false" show-input-field="true" />
+                    <ui:Slider picking-mode="Ignore" label="Run Speed" value="5" high-value="10" name="runSpeed" inverted="false" show-input-field="true" />
                     <ui:Slider picking-mode="Ignore" label="Acceleration" value="6" high-value="10" name="acceleration" show-input-field="true" />
                     <ui:Slider picking-mode="Ignore" label="Deceleration" value="5" high-value="10" name="deceleration" show-input-field="true" />
                     <ui:Slider picking-mode="Ignore" label="Air Acceleration" value="1" high-value="5" name="airAcceleration" show-input-field="true" />

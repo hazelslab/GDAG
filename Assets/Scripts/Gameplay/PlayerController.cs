@@ -8,9 +8,18 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    private PlayerMaster _master;
+
     public Vector2 MoveInput { get { return moveInput; } private set { MoveInput = value; } }
-    public bool IsGrounded { get { return isGrounded; } private set { IsGrounded = value; } }
     public float JumpVelocity { get { return rbody.velocity.y; } private set { JumpVelocity = value; } }
+    public bool IsGrounded { get { return isGrounded; } private set { IsGrounded = value; } }
+    public bool IsWalking { get { return _isWalking; } private set { IsWalking = value; } }
+    public bool IsRunning { get { return _isRunning; } private set { IsRunning = value; } }
+    public bool IsCrouching { get { return _isCrouching; } private set { IsCrouching = value; } }
+    public bool IsCrawling { get { return _isCrawling; } private set { IsCrawling = value; } }
+
+
+
 
 
     [SerializeField]
@@ -22,7 +31,11 @@ public class PlayerController : MonoBehaviour
     #region Movement
     //serialized
     [SerializeField]
-    private float moveSpeed;
+    private float crouchSpeed;
+    [SerializeField]
+    private float walkSpeed;
+    [SerializeField]
+    private float runSpeed;
     [SerializeField]
     private float acceleration;
     [SerializeField]
@@ -37,8 +50,13 @@ public class PlayerController : MonoBehaviour
     private float friction;
 
     //privates
+    private float moveSpeed;
     private Vector2 moveInput;
     private Vector2 lastMoveInput;
+    private bool _isWalking;
+    private bool _isRunning;
+    private bool _isCrouching;
+    private bool _isCrawling;
     #endregion
 
 
@@ -102,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _master = GetComponent<PlayerMaster>();
         rbody = GetComponent<Rigidbody2D>();
         trailRenderer = GetComponentInChildren<TrailRenderer>();
         gravityScale = rbody.gravityScale;
@@ -111,6 +130,14 @@ public class PlayerController : MonoBehaviour
     public void IA_Move(InputAction.CallbackContext context)
     {
         moveInput = context.action.ReadValue<Vector2>();
+        if (context.started)
+        {
+            _isWalking = true;
+        }
+        if (context.canceled)
+        {
+            _isWalking = false;
+        }
     }
 
     public void IA_Jump(InputAction.CallbackContext context)
@@ -124,6 +151,42 @@ public class PlayerController : MonoBehaviour
         {
             jumpPressedDown = false;
             OnJumpUp();
+        }
+    }
+
+    public void IA_Sprint(InputAction.CallbackContext context)
+    {
+        if (!isGrounded && MoveInput.x == 0 && _master.REF_PlayerStats.CurrentStamina <= 0)
+        {
+            _isRunning = false;
+            return;
+        }
+        if (context.started)
+        {
+            _isCrouching = false;
+            _isRunning = true;
+        }
+        if (context.canceled)
+        {
+            _isRunning = false;
+        }
+    }
+
+    public void IA_Crouch(InputAction.CallbackContext context)
+    {
+        if (!isGrounded)
+        {
+            _isCrouching = false;
+            return;
+        }
+        if (context.started)
+        {
+            _isRunning = false;
+            _isCrouching = true;
+        }
+        if (context.canceled)
+        {
+            _isCrouching = false;
         }
     }
     #endregion
@@ -193,6 +256,19 @@ public class PlayerController : MonoBehaviour
         #region Run
         if (canMove)
         {
+            if (_isRunning && _master.REF_PlayerStats.CurrentStamina > 0)
+            {
+                moveSpeed = runSpeed;
+            }
+            else if (_isCrouching)
+            {
+                moveSpeed = crouchSpeed;
+            }
+            else
+            {
+                moveSpeed = walkSpeed;
+            }
+
             //calculate the direction we want to move in and our desired velocity
             float targetSpeed = moveInput.x * moveSpeed;
             //calculate difference between current velocity and desired velocity

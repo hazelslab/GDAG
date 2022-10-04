@@ -5,7 +5,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(PlayerController))]
+//[CustomEditor(typeof(PlayerController))]
 public class PlayerControllerEditor : Editor
 {
     private PlayerController controller;
@@ -41,8 +41,12 @@ public class PlayerControllerEditor : Editor
         var toggle_jump = root.Q<Toggle>("toggle-jump");
         toggle_jump.BindProperty(serializedObject.FindProperty("canJump"));
 
-        var atr_moveSpeed = root.Q<Slider>("moveSpeed");
-        atr_moveSpeed.BindProperty(serializedObject.FindProperty("moveSpeed"));
+        var atr_crouchSpeed = root.Q<Slider>("crouchSpeed");
+        atr_crouchSpeed.BindProperty(serializedObject.FindProperty("crouchSpeed"));
+        var atr_walkSpeed = root.Q<Slider>("walkSpeed");
+        atr_walkSpeed.BindProperty(serializedObject.FindProperty("walkSpeed"));
+        var atr_runSpeed = root.Q<Slider>("runSpeed");
+        atr_runSpeed.BindProperty(serializedObject.FindProperty("runSpeed"));
         var atr_acceleration = root.Q<Slider>("acceleration");
         atr_acceleration.BindProperty(serializedObject.FindProperty("acceleration"));
         var atr_deceleration = root.Q<Slider>("deceleration");
