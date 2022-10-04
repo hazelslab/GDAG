@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e277cdd854d24904ab4f222ed19a9f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStats_REF: {fileID: 0}
-  PlayerController_REF: {fileID: 0}
-  PlayerAnimations_REF: {fileID: 0}
+  PlayerStats_REF: {fileID: 3856505899254029975}
+  PlayerController_REF: {fileID: 3182422436589069214}
+  PlayerAnimations_REF: {fileID: 8335177077810294943}
 --- !u!114 &3856505899254029975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +71,10 @@ MonoBehaviour:
   _currentStamina: 100
   _maxStamina: 100
   _drainMultiplier: 3
+  _walkRegenMultiplier: 2
+  _idleRegenMultiplier: 2.5
+  _timeUntilStaminaRegen: 3
+  _staminaSlider: {fileID: 0}
 --- !u!114 &3182422436589069214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +109,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   showMoveTrail: 0
+  CurrentPlayerAnimState: 0
 --- !u!114 &8335177077810294943
 MonoBehaviour:
   m_ObjectHideFlags: 0

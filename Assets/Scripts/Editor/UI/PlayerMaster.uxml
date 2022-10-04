@@ -1,11 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Scripts/Editor/UI/InspectorHeader.uss?fileID=7433441132597879392&amp;guid=5a85cd1b739397240a3b6610cfe2a9fb&amp;type=3#InspectorHeader" />
-    <Style src="project://database/Assets/Scripts/Editor/UI/PlayerMaster.uss?fileID=7433441132597879392&amp;guid=6daf317b63a308f4194a4e8718d9987a&amp;type=3#PlayerMaster" />
-    <ui:VisualElement name="root" style="flex-grow: 0; height: auto; flex-shrink: 1; max-height: 100px;">
+    <ui:VisualElement name="root" style="flex-grow: 1; flex-shrink: 1;">
         <ui:VisualElement name="header" class="insp-header">
             <ui:Label text="PLAYER MASTER" display-tooltip-when-elided="true" name="label-header" />
         </ui:VisualElement>
-        <ui:VisualElement name="content">
+        <ui:VisualElement name="content" class="insp-content-container" style="border-top-width: 1px;">
             <uie:ObjectField label="Stats" name="of-stats" />
             <uie:ObjectField label="Controller" name="of-controller" />
             <uie:ObjectField label="Animations" name="of-animations" />
