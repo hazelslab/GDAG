@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a84a19394e56249a4b32ff9000e50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEV_InfiniteStamina: 0
   _currentStamina: 100
   _maxStamina: 100
   _drainMultiplier: 3
@@ -100,7 +101,7 @@ MonoBehaviour:
   airDecel: 1
   velPower: 1.2
   friction: 10
-  jumpForce: 10
+  jumpForce: 11
   jumpCutMultiplier: 0.1
   fallGravityMultiplier: 1.9
   jumpCoyoteTime: 0.15
