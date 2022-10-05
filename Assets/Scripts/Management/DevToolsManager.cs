@@ -1,37 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DevToolsManager : MonoBehaviour
 {
-    
-    public bool DevToolsOpened { get; private set; }
+    public static DevToolsManager Instance { get; private set; }
 
-    [SerializeField]
-    private GameObject _DevToolsPanel;
 
     private void Awake()
     {
-        if (_DevToolsPanel.activeSelf)
-        {
-            DevToolsOpened = true;
-        }
-        else
-        {
-            DevToolsOpened = false;
-        }
+        Instance = this;
     }
 
-    public void ToggleDevToolsPanel()
+
+    public void InfiniteStamina_Toggled(Toggle self)
     {
-        if (DevToolsOpened)
-        {
-            _DevToolsPanel.SetActive(false);
-        }
-        else
-        {
-            _DevToolsPanel.SetActive(true);
-        }
-        DevToolsOpened = !DevToolsOpened;
+        PlayerMaster.Instance.PlayerStats_REF.DEV_InfiniteStamina = self.isOn;
+        PlayerMaster.Instance.PlayerStats_REF.DEV_FillStamina();
     }
+
 }

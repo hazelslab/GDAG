@@ -68,7 +68,7 @@
                 {
                     "name": "down",
                     "id": "c9a4740c-2f77-4913-8b32-651536bb7512",
-                    "path": "<Keyboard>/s",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -215,6 +215,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c86dd6d7-0c0d-4f61-99ca-10e585e20338",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false

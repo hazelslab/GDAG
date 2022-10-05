@@ -9,7 +9,10 @@ public class PlayerStats : MonoBehaviour
 {
     private PlayerMaster _master;
 
+    public bool DEV_InfiniteStamina = false;
+
     public float CurrentStamina { get { return _currentStamina; } private set { CurrentStamina = value; } }
+    public float MaxStamina { get { return _maxStamina; } private set { MaxStamina = value; } }
 
     [SerializeField]
     private float _currentStamina = 100f;
@@ -49,6 +52,8 @@ public class PlayerStats : MonoBehaviour
     {
         _staminaSlider.value = _currentStamina;
 
+        if (DEV_InfiniteStamina) return;
+
         if (!_master.PlayerController_REF.IsCrouching && _master.PlayerController_REF.IsRunning && _currentStamina > 0f)
         {
             _currentStamina -= (10f * _drainMultiplier) * Time.deltaTime;
@@ -78,6 +83,11 @@ public class PlayerStats : MonoBehaviour
                 _timeUntilStaminaRegen_timer = 0f;
             }
         }
+    }
+
+    public void DEV_FillStamina()
+    {
+        _currentStamina = _maxStamina;
     }
 
 }
