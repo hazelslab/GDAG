@@ -55,12 +55,14 @@ public class PlayerStats : MonoBehaviour
             _timeUntilStaminaRegen_timer = 0f;
             _canRegenStamina = false;
         }
-        else if (_canRegenStamina && _master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_IDLE && _currentStamina < _maxStamina)
+        else if (_canRegenStamina && (_master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_IDLE
+                                      || _master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_CROUCH) && _currentStamina < _maxStamina)
         {
             _currentStamina += (10f * _idleRegenMultiplier) * Time.deltaTime;
             if (_currentStamina >= _maxStamina) _currentStamina = _maxStamina;
         }
-        else if (_canRegenStamina && _master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_WALK && _currentStamina < _maxStamina)
+        else if (_canRegenStamina && (_master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_WALK
+                                      || _master.PlayerController_REF.CurrentPlayerAnimState == PlayerAnimState.PLAYER_CRAWL) && _currentStamina < _maxStamina)
         {
             _currentStamina += (10f * _walkRegenMultiplier) * Time.deltaTime;
             if (_currentStamina >= _maxStamina) _currentStamina = _maxStamina;
