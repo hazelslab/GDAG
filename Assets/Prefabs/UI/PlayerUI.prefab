@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7305332527725287051}
   - component: {fileID: 8815945845967408355}
   - component: {fileID: 2404353183029611410}
+  - component: {fileID: 8832258698836467988}
   m_Layer: 0
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -101,6 +102,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8832258698836467988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215038620415682389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b00bbcf9ffefc94a94d50d8f6e61e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StaminaBarSlider: {fileID: 5715758265870201256}
 --- !u!1 &1829695972240483096
 GameObject:
   m_ObjectHideFlags: 0
