@@ -37,6 +37,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         _master = GetComponent<PlayerMaster>();
+
     }
 
     private void Start()
