@@ -84,12 +84,18 @@ public class PlayerController : MonoBehaviour
     private Transform groundCheckPoint;
     [SerializeField]
     private Vector2 groundCheckSize;
+    [SerializeField]
+    private Transform headCheckPoint;
+    [SerializeField]
+    private Vector2 headCheckSize;
 
     //privates
     private float lastGroundedTime;
     private float lastJumpTime;
     private bool isFacingRight = true;
     private bool isGrounded;
+    private bool holdingCrouch;
+    private bool headHitting;
     #endregion
 
     #region Particles
@@ -182,10 +188,15 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             _isCrouching = true;
+            holdingCrouch = true;
         }
         if (context.canceled)
         {
-            _isCrouching = false;
+            if (!headHitting)
+            {
+                _isCrouching = false;
+            }
+            holdingCrouch = false;
         }
     }
     #endregion
@@ -234,7 +245,7 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        #region Ground
+        #region Collider Checks
         if (Physics2D.OverlapBox(groundCheckPoint.position, groundCheckSize, 0, groundLayer) && !isJumping)
         {
             lastGroundedTime = jumpCoyoteTime;
@@ -244,6 +255,22 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        if (Physics2D.OverlapBox(headCheckPoint.position, headCheckSize, 0, groundLayer))
+        {
+            headHitting = true;
+        }
+        else
+        {
+            headHitting = false;
+        }
+        if (Physics2D.OverlapBox(headCheckPoint.position, headCheckSize, 0, groundLayer) && !isJumping && !holdingCrouch)
+        {
+            _isCrouching = true;
+        }
+        else if (!Physics2D.OverlapBox(headCheckPoint.position, headCheckSize, 0, groundLayer) && !holdingCrouch)
+        {
+            _isCrouching = false;
+        }
         #endregion
 
         #region Jump
@@ -252,7 +279,7 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
-        if (lastJumpTime > 0 && !isJumping && jumpInputReleased)
+        if (lastJumpTime > 0 && !isJumping && jumpInputReleased && !_isCrouching)
         {
             if (lastGroundedTime > 0)
             {
@@ -390,10 +417,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        if (groundCheckPoint != null)
+        Gizmos.color = Color.blue;
+        if (groundCheckPoint != null && headCheckPoint != null)
         {
             Gizmos.DrawWireCube(groundCheckPoint.position, groundCheckSize);
+            Gizmos.DrawWireCube(headCheckPoint.position, headCheckSize);
         }
     }
 }

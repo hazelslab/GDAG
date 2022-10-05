@@ -38,6 +38,8 @@
                 <ui:VisualElement name="content-checks">
                     <uie:ObjectField label="Ground Check Point" name="groundCheckPoint" type="UnityEngine.Transform, UnityEngine.CoreModule" allow-scene-objects="true" />
                     <uie:Vector2Field label="Ground Check Size" name="groundCheckSize" />
+                    <uie:ObjectField label="Head Check Point" name="headCheckPoint" type="UnityEngine.Transform, UnityEngine.CoreModule" allow-scene-objects="true" />
+                    <uie:Vector2Field label="Head Check Size" name="headCheckSize" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="particles" class="insp-content-container">

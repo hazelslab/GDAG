@@ -75,6 +75,10 @@ public class PlayerControllerEditor : Editor
         atr_groundCheckPoint.BindProperty(serializedObject.FindProperty("groundCheckPoint"));
         var atr_groundCheckSize = root.Q<Vector2Field>("groundCheckSize");
         atr_groundCheckSize.BindProperty(serializedObject.FindProperty("groundCheckSize"));
+        var atr_headCheckPoint = root.Q<ObjectField>("headCheckPoint");
+        atr_headCheckPoint.BindProperty(serializedObject.FindProperty("headCheckPoint"));
+        var atr_headCheckSize = root.Q<Vector2Field>("headCheckSize");
+        atr_headCheckSize.BindProperty(serializedObject.FindProperty("headCheckSize"));
 
         var atr_walkingParticles = root.Q<ObjectField>("walkingParticles");
         atr_walkingParticles.BindProperty(serializedObject.FindProperty("_walkingDust"));
