@@ -419,7 +419,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 23, y: 9}
-      - {x: -23, y: 9}
+    - - {x: 37, y: 16}
+      - {x: -23, y: 16}
       - {x: -23, y: -5}
-      - {x: 23, y: -5}
+      - {x: 37, y: -5}
