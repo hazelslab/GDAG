@@ -12,6 +12,8 @@ public class PlayerMaster : MonoBehaviour
 
     public PlayerStats PlayerStats_REF;
     public PlayerController PlayerController_REF;
+    public PlayerParticles PlayerParticles_REF;
+    public PlayerAudio PlayerAudio_REF;
     public PlayerAnimations PlayerAnimations_REF;
     
     private void Awake()
@@ -21,6 +23,8 @@ public class PlayerMaster : MonoBehaviour
 
         PlayerStats_REF = GetComponent<PlayerStats>();
         PlayerController_REF = GetComponent<PlayerController>();
+        PlayerParticles_REF = GetComponent<PlayerParticles>();
+        PlayerAudio_REF = GetComponent<PlayerAudio>();
         PlayerAnimations_REF = GetComponent<PlayerAnimations>();
     }
 }

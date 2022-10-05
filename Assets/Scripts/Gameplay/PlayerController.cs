@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private float gravityScale;
     private bool isJumping;
     private bool jumpInputReleased = true;
+    private bool landing;
     #endregion
 
 
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     #region Particles
     [SerializeField]
-    private ParticleSystem _walkingDust;
+    private ParticleSystem _walkingDust; // obsolete
     #endregion
 
 
@@ -264,10 +265,17 @@ public class PlayerController : MonoBehaviour
         {
             lastGroundedTime = jumpCoyoteTime;
             isGrounded = true;
+            if (landing)
+            {
+                _master.PlayerParticles_REF.SpawnLandingDustEffect();
+                _master.PlayerAudio_REF.PlaySound("Landing");
+                landing = false;
+            }
         }
         else
         {
             isGrounded = false;
+            landing = true;
         }
         if (Physics2D.OverlapBox(headCheckPoint.position, headCheckSize, 0, groundLayer))
         {
@@ -385,10 +393,13 @@ public class PlayerController : MonoBehaviour
     #region Jump
     private void Jump(float jumpForce)
     {
+        landing = true;
         rbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         lastJumpTime = 0;
         isJumping = true;
         jumpInputReleased = false;
+        _master.PlayerParticles_REF.SpawnJumpDustEffect();
+        _master.PlayerAudio_REF.PlaySound("Jump");
     }
 
     public void OnJump()
