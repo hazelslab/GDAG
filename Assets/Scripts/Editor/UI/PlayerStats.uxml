@@ -17,7 +17,6 @@
                     </ui:VisualElement>
                     <ui:Slider picking-mode="Ignore" label="Time Until Regeneration" value="3" high-value="10" name="slider-timeUntilStaminaRegen" show-input-field="true" />
                     <ui:Slider picking-mode="Ignore" label="Current Time Until Regeneration" value="3" high-value="10" name="slider-currentTimeUntilStaminaRegen" show-input-field="true" />
-                    <uie:ObjectField label="Staminabar" name="staminabar" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

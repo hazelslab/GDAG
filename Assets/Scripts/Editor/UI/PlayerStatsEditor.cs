@@ -38,8 +38,6 @@ public class PlayerStatsEditor : Editor
         var slider_timeUntilStaminaRegen = root.Q<Slider>("slider-timeUntilStaminaRegen");
         var slider_currentTimeUntilStaminaRegen = root.Q<Slider>("slider-currentTimeUntilStaminaRegen");
         slider_currentTimeUntilStaminaRegen.SetEnabled(false);
-        var obj_staminabar = root.Q<ObjectField>("staminabar");
-        obj_staminabar.objectType = typeof(UnityEngine.UI.Slider);
 
         //Bindings
         slider_currentStamina.BindProperty(serializedObject.FindProperty("_currentStamina"));

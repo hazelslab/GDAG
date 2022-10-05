@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         _master = GetComponent<PlayerMaster>();
-
+        _staminaSlider = UIManager.Instance.StaminaBarSlider;
     }
 
     private void Start()
