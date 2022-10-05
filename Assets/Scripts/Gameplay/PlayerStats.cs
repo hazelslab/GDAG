@@ -40,17 +40,17 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         _master = GetComponent<PlayerMaster>();
-        _staminaSlider = UIManager.Instance.StaminaBarSlider;
     }
 
     private void Start()
     {
+        _staminaSlider = UIManager.Instance.StaminaBarSlider;
         _staminaSlider.maxValue = _maxStamina;
     }
 
     private void Update()
     {
-        _staminaSlider.value = _currentStamina;
+        _staminaSlider.SetValueWithoutNotify(_currentStamina);
 
         if (DEV_InfiniteStamina) return;
 

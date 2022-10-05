@@ -29,8 +29,7 @@ public class PlayerStatsEditor : Editor
         _visualTree.CloneTree(root);
 
         //Components
-        var slider_currentStamina = root.Q<Slider>("slider-currentStamina");
-        slider_currentStamina.SetEnabled(false);
+        var slider_currentStamina = root.Q<ProgressBar>("slider-currentStamina");
         var slider_maxStamina = root.Q<Slider>("slider-maxStamina");
         var slider_drainMultiplier = root.Q<Slider>("slider-drainMultiplier");
         var slider_walkRegenMultiplier = root.Q<Slider>("slider-walkRegenMultiplier");
