@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     //privates
     private float gravityScale;
     private bool isJumping;
-    private bool jumpInputReleased;
+    private bool jumpInputReleased = true;
     #endregion
 
 
@@ -204,6 +204,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         if (_tryRunning && moveInput.x == 0)
         {
             _isRunning = false;
