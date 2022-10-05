@@ -161,6 +161,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 336670915504320815, guid: cbe0df5233527724ab57ce84b25c1d33, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -313.7588
+      objectReference: {fileID: 0}
+    - target: {fileID: 336670915504320815, guid: cbe0df5233527724ab57ce84b25c1d33, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 176.17023
+      objectReference: {fileID: 0}
     - target: {fileID: 717881228638839660, guid: cbe0df5233527724ab57ce84b25c1d33, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -310,6 +318,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GAMEPLAY
       objectReference: {fileID: 0}
+    - target: {fileID: 5679169233195435070, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
+      propertyPath: _followPoint
+      value: 
+      objectReference: {fileID: 1007693556781201867}
+    - target: {fileID: 5679169233195435070, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
+      propertyPath: _playerMaster
+      value: 
+      objectReference: {fileID: 1007693556781201866}
     - target: {fileID: 5799382297420572607, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
       propertyPath: m_Name
       value: JumpDust_Point
@@ -320,6 +336,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
+--- !u!114 &1007693556781201866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2522145112649428492, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
+  m_PrefabInstance: {fileID: 1007693556781201865}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e277cdd854d24904ab4f222ed19a9f7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1007693556781201867 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 493386997742922171, guid: 553a95dded7e5ae46a7f4c388ac2653d, type: 3}
+  m_PrefabInstance: {fileID: 1007693556781201865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1864064833070601067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -390,7 +422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3827320670720390186, guid: 340be0baf9c297443aac3978e6de1fd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000051955203
+      value: -0.0000025921618
       objectReference: {fileID: 0}
     - target: {fileID: 3827320671105030964, guid: 340be0baf9c297443aac3978e6de1fd2, type: 3}
       propertyPath: m_RootOrder
