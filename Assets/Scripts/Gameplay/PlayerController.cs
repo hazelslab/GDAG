@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isRunning;
     private bool _isCrouching;
+    private bool _tryRunning;
     #endregion
 
 
@@ -175,11 +176,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            _isRunning = true;
+            _tryRunning = true;
         }
         if (context.canceled)
         {
-            _isRunning = false;
+            _tryRunning = false;
         }
     }
 
@@ -203,6 +204,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_tryRunning && moveInput.x == 0)
+        {
+            _isRunning = false;
+        }
+        else if (_tryRunning && moveInput.x != 0)
+        {
+            _isRunning = true;
+        }
+        else if (!_tryRunning)
+        {
+            _isRunning = false;
+        }
         if (_master.PlayerStats_REF.CurrentStamina <= 0) _isRunning = false;
         if (isGrounded && moveInput.x == 0 && !_isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_IDLE); CurrentPlayerAnimState = PlayerAnimState.PLAYER_IDLE; }
         else if (isGrounded && moveInput.x == 0 && _isCrouching) { _master.PlayerAnimations_REF.ChangeAnimationState(PLAYER_CROUCH); CurrentPlayerAnimState = PlayerAnimState.PLAYER_CROUCH; }

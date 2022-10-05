@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour
     {
         _staminaSlider.value = _currentStamina;
 
-        if (_master.PlayerController_REF.IsRunning && _currentStamina > 0f)
+        if (!_master.PlayerController_REF.IsCrouching && _master.PlayerController_REF.IsRunning && _currentStamina > 0f)
         {
             _currentStamina -= (10f * _drainMultiplier) * Time.deltaTime;
             if (_currentStamina <= 0f) _currentStamina = 0f;
