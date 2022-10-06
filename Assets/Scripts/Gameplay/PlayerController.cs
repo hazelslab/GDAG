@@ -440,7 +440,7 @@ public class PlayerController : MonoBehaviour
         _walkingDust.Play();
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         if (groundCheckPoint != null && headCheckPoint != null)
