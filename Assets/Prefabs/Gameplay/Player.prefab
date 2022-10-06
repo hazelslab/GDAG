@@ -150,7 +150,7 @@ MonoBehaviour:
   _walkingDust: {fileID: 0}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   showMoveTrail: 0
   CurrentPlayerAnimState: 0
 --- !u!114 &3048785730836103166
