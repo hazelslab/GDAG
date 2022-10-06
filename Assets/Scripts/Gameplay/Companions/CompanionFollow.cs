@@ -16,6 +16,8 @@ public class CompanionFollow : MonoBehaviour
     [SerializeField]
     private float _followSpeed = 0.8f;
 
+    private bool _playerFar;
+
 
     private void Update()
     {
@@ -24,11 +26,19 @@ public class CompanionFollow : MonoBehaviour
         {
             transform.position = Vector2.Lerp(transform.position, _followPoint.position, (_followSpeed * dist) * Time.deltaTime);
         }
+
+        if(dist > _followDistance * 2.5f)
+            _playerFar = true;
+        else
+            _playerFar = false;
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        if(!_playerFar)
+            Gizmos.color = Color.yellow;
+        else
+            Gizmos.color= Color.red;
         Gizmos.DrawLine(transform.position, _followPoint.position);
     }
 }
